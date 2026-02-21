@@ -57,3 +57,26 @@ for x in reads:
 print(filt_reads)
 print("Reads kept:", len(filt_reads))
 print("Percentage of Reads kept:", (len(filt_reads)/len(reads))*100, "%")
+
+#Problem 8 — GC Content Per Sequence
+
+fasta_dict = {}
+with open("C:/Users/Bigza/Downloads/seq1_mock.txt", "r") as file:
+    header = None
+
+    for line in file:
+        line = line.strip()
+        
+        if line.startswith(">"):
+            header = line[1:]
+            fasta_dict[header] = ""
+        else:
+            fasta_dict[header] += line
+print(fasta_dict)
+
+fasta_dict1 = fasta_dict.copy()
+for key, item in fasta_dict.items():
+    gc_per = round((fasta_dict[key].count("G") + fasta_dict[key].count("C"))/len(fasta_dict[key])*100,2)
+    fasta_dict1[key] = gc_per
+    
+print(fasta_dict1)
